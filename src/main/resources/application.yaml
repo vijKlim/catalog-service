@@ -15,7 +15,7 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
-      request-content-timeout: 5000 #5s
+      request-connect-timeout: 5000 #5s
       request-read-timeout: 5000 #5s
       fail-fast: false # In production, set to true
       retry:
@@ -23,6 +23,22 @@ spring:
         initial-interval: 1000 #1s
         max-interval: 2000 #2s
         multiplier: 1.1
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
+    hiraki:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+  sql:
+    init:
+      mode: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
 
 polar:
   greeting: Welcome to the local book catalog!
